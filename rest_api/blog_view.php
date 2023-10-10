@@ -1,4 +1,5 @@
 <?php 
+ error_reporting(0);
  header('content-type: application/json');
  header('Access-control-Allow-origin:*');
  header('Access-Control-Method: GET');
@@ -10,7 +11,7 @@
 
  if($requestMethod == 'GET'){
 
- $sql = "SELECT * FROM  datablog";
+ $sql = "SELECT * FROM  datablog ORDER BY id DESC";
  $result = mysqli_query($conn, $sql) or die("sql query failed");
 
  if(mysqli_num_rows($result) > 0){

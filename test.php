@@ -1,44 +1,47 @@
-<?php 
-    $idd    = $_GET['id'];
-    $api_Url = "http://localhost/AstBackend/AstBackend/rest_api/blog_view.php" .$idd ; 
-    
-    //read json file
-    $json_data = file_get_contents($api_Url);
+<!-- PHP INSERT SCRIPT START -->
+<?php
 
-    //decode json data into php array
-    $response_data = json_decode($json_data);
-    //  print_r($response_data);
+    if (isset($_POST['submit'])) {
+        include 'login/database/_dbconnect.php';
+        $blogTitle = $_POST['post_title'];
+        $blogTag = $_POST['post_tags'];
+        // $blogImage = $_POST['post_image'];
+        $blogDesc = $_POST['post_description'];
+
+        $target_dir = "upload_images/"; // this used to upload the file
+        $file_name  =   $_FILES['post_image']['name']; //Is Used to Store the file.
+        $file_tmp_name = $_FILES['post_image']['tmp_name']; //used to get the temp of the file.
+
+        $file_type = $_FILES['post_image']['type'];
+
+        $allowed_file_types = array('image/jpeg', 'image/png');
+
+        // $errorAlert = false;
+        if (!in_array($file_type, $allowed_file_types)) {
+            // $errorAlert =   
+            // '<div class="alert alert-danger alert-dismissible" role="alert">
+            //         Sorry, only JPEG and PNG files are allowed.
+            //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //         </div>';
+            echo "<script> alert('Sorry, only JPEG and PNG files are allowed.');</script>";  
+            // header("location: insert_blog.php");      
+            exit();
+        }
+
+        $file_target =  $target_dir.$file_name;
+        
+        $file_move = move_uploaded_file($file_tmp_name,  $file_target); 
+
+        if($file_move){
+            $insert_query = "INSERT INTO `datablog`(`title`, `blog_tag`, `image`, `blog_description`) VALUES ('$blogTitle', '$blogTag', '$file_name', '$blogDesc')";
+            $sql_query = mysqli_query($conn, $insert_query);
+
+            if ($sql_query) {
+
+                // header("location: insert_blog.php");
+                echo "<script> alert('Blog Add Successfully.');</script>";
+            }
+        }
+        
+    };        
 ?>
-
-                    <?php foreach($response_data as $blog_details) { ?>
-                                        <?php }?>
-
-
-                    <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Post Title" name="post_title"
-                                    value="<?php echo $blog_details->id;?>">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Post Tag" name="post_title"
-                                    value="<?php echo $blog_details->title;?>">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Post Tag" name="post_tags"
-                                    value="<?php echo $blog_details->blog_tag;?>">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control" type="file" id="formFileMultiple" multiple="" name="post_image">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="updateCkEditor">Description</label>
-                                <input class="form-control" id="updateCkEditor" rows="3" name="post_description"
-                                    value="<?php echo $blog_details->blog_description;?>">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Update Blog</button>
-                            </div>
-                        </form>
-                    </div>

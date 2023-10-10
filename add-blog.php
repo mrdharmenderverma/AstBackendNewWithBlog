@@ -1,5 +1,7 @@
 <!-- PHP INSERT SCRIPT START -->
 <?php
+    // $JpgPng = false;
+    $Jpg_Png_Error = false;
 
     if (isset($_POST['submit'])) {
         include 'login/database/_dbconnect.php';
@@ -15,15 +17,16 @@
 
         $allowed_file_types = array('image/jpeg', 'image/png');
 
-        $errorAlert = false;
+        // $errorAlert = false;
         if (!in_array($file_type, $allowed_file_types)) {
             // $errorAlert =   
             // '<div class="alert alert-danger alert-dismissible" role="alert">
             //         Sorry, only JPEG and PNG files are allowed.
             //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             //         </div>';
-            echo "<script> alert('Sorry, only JPEG and PNG files are allowed.');</script>";  
-            // header("location: insert_blog.php");      
+            // echo "<script> alert('Sorry, only JPEG and PNG files are allowed.');</script>";  
+            // header("location: insert_blog.php");   
+            $Jpg_Png_Error = 'only JPEG and PNG files are allowed.';
             exit();
         }
 
@@ -38,14 +41,29 @@
             if ($sql_query) {
 
                 // echo "<script> alert('Blog Add Successfully.');</script>";
-                header("location: insert_blog.php");
+                header("location: add-blog.php");
             }
         }
         
     };
 ?>
-
 <!-- PHP INSERT SCRIPT END -->
+
+<!-- Inserting data using api -->
+<?php 
+    //Adding Base url
+    include_once 'base_url/base_url.php';
+    $api_Url = ''. LOCAL_BASE_URL .'/blog_view.php';
+    
+    //read json file
+    $json_data = file_get_contents($api_Url);
+
+    //decode json data into php array
+    $response_data = json_decode($json_data);
+//  print_r($response_data);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/">
 <!-- Head -->
@@ -53,6 +71,7 @@
 <!-- /Head -->
 
 <body>
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -69,47 +88,39 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
 
-
                     <!-- Content -->
                     <div class="container my-5 col-md-6">
                         <h2 class="my-3">Create A New Post</h2>
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Post Title" name="post_title">
+                                <input type="text" class="form-control" placeholder="Post Title" name="post_title" required>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Post Tag" name="post_tags">
+                                <input type="text" class="form-control" placeholder="Post Tag" name="post_tags" required>
                             </div>
                             <div class="mb-3">
                                 <input class="form-control" type="file" id="formFileMultiple" multiple=""
-                                    name="post_image">
-                                    
+                                    name="post_image">                                    
                             </div>
+                            <?php
+                                
+                                if($Jpg_Png_Error){
+                                echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> '. $Jpg_Png_Error.'
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div> ';
+                                }
+                            ?>
                             <div class="form-group mb-3">
                                 <label for="ckEditor">Description</label>
                                 <textarea class="form-control" id="ckEditor" rows="3"
-                                    name="post_description"></textarea>
+                                    name="post_description" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary" name="submit">Add Post</button>
                         </form>
                     </div>
-                    <!-- / Content -->
-                    <!---start table--->
-                    <!---/end table-->
+                    <!-- / Content -->                  
                     
-
-
-                    <!-- Modal -->
-                    <?php 
-                     $api_Url = "http://localhost/AstBackend/rest_api/blog_view.php";
-                     
-                     //read json file
-                     $json_data = file_get_contents($api_Url);
-
-                     //decode json data into php array
-                     $response_data = json_decode($json_data);
-                    //  print_r($response_data);
-                    ?>
 
                     <?php foreach($response_data as $blog_details) { ?>
                                         <?php }?>

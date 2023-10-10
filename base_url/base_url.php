@@ -1,3 +1,3 @@
 <?php
-    define(NEW_BASE_URL, "");
+    define('LOCAL_BASE_URL', "http://localhost/AstBackend/rest_api");
 ?>
