@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
     if($update){
 
             // echo "Data Updated";
-            header("location: ../blog_details.php");
+            header("location: ../blog-details.php");
     }else{
             echo "Data NOt Updated";
     }

@@ -138,7 +138,8 @@
                                             <td><a href="preview.php?id=<?php echo $eid;?>" class="btn btn-primary"
                                                         style="color:white !important">View</a></td>
                                         </form>
-                                    <td><button class="btn btn-danger">Delete</button></td>
+                                    <td><a href="delete.php?id=<?php echo $eid;?>" class="btn btn-danger"
+                                                        style="color:white !important">Delete</a></td>
                                 </tr>
                                 <!-- <a class="btn btn-primary mt-30"
                             href="edit.php" style="margin-bottom:10px"

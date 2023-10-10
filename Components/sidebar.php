@@ -92,18 +92,18 @@
             </a>
         </li> -->
         <li class="menu-item <?php if($active == 'blog'){ echo 'active open';}?>">
-            <a href="insert_blog.php" class="menu-link menu-toggle">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Account Settings">Blogs</div>
             </a>
             <ul class="menu-sub">
             <li class="menu-item <?php if($page == 'add blog'){ echo 'active';}?>">
-                    <a href="insert_blog.php" class="menu-link">
+                    <a href="add-blog.php" class="menu-link">
                         <div data-i18n="Notifications">Add blog</div>
                     </a>
                 </li>
                 <li class="menu-item <?php if($page == 'blog details'){ echo 'active';}?>">
-                    <a href="blog_details.php" class="menu-link">
+                    <a href="blog-details.php" class="menu-link">
                         <div data-i18n="Account">Blog details</div>
                     </a>
                 </li>
