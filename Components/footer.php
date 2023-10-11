@@ -33,8 +33,25 @@
     <script src="assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
+    <!--Sweet Alert js  -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      swal({
+        title: "<?php echo $_SESSION['status']?>",
+        // text: "You clicked the button!",
+        icon: "<?php echo $_SESSION['inserted_blog']?>",
+        button: "Okay!",
+      });
+    </script>
     <!-- Vendors JS -->
     <script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- ck editor -->
+    <script src="ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('ckEditor');
+        CKEDITOR.replace('updateCkEditor');
+    </script>
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
