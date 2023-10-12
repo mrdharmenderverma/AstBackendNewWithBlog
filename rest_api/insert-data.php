@@ -17,7 +17,8 @@
         if (!in_array($file_type, $allowed_file_types)) 
         {
             session_start();
-            $_SESSION['image_status'] = "Only JPG, JPEG or PNG are allowed!!";
+            $_SESSION['status'] = "Only JPG, JPEG or PNG are allowed!!";
+            $_SESSION['status_code']= "error";
             header('location: ../add-blog.php');
             // exit();
         }
@@ -27,7 +28,8 @@
             {   
                 session_start();
                 $file_name  =   $_FILES['post_image']['name'];
-                $_SESSION['image_status_exits'] = "Image already Exists " . $file_name;
+                $_SESSION['status'] = "Image already Exists " . $file_name;
+                $_SESSION['status_code']= "error";
                 header('location: ../add-blog.php');
             }
             else{        
@@ -44,8 +46,8 @@
                         if($sql_query)
                         {   
                             session_start();
-                            $_SESSION['status'] = "success";
-                            $_SESSION['inserted_blog'] = "Blog inserted Successfully";
+                            $_SESSION['status'] = "Blog inserted Successfully";
+                            $_SESSION['status_code']= "success";
                             header('location: ../add-blog.php');
                         }
                     }
