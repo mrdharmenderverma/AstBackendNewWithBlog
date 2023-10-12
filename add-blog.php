@@ -49,17 +49,7 @@
                             </div>
                             <div class="mb-3">
                                 <input class="form-control" type="file" id="imageId" accept="image/*" name="post_image">                                    
-                            </div>
-                            <?php 
-                                if(isset($_SESSION['image_status']) && $_SESSION['image_status'] !='')
-                                    {
-                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Error!</strong> '. $_SESSION['image_status'].'
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div> ';
-                                        unset($_SESSION['image_status']);
-                                    }
-                            ?>
+                            </div>                         
                             
                             <div class="form-group mb-3">
                                 <label for="ckEditor">Description</label>

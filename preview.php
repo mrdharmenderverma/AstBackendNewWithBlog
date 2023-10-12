@@ -23,7 +23,7 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/">
 <!-- Head -->
-<?php $page = 'add blog';  $active = 'blog';  require 'Components/head.php';?>
+<?php $page = 'blog details';  $active = 'blog';  require 'Components/head.php';?>
 <!-- /Head -->
 
 <body>
