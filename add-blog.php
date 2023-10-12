@@ -38,25 +38,7 @@
                 <div class="content-wrapper">                    
                     <!-- Content -->
                     <div class="container my-5 col-md-6">
-                        <h2 class="my-3">Create A New Blog</h2>
-                        <?php 
-                            if(isset($_SESSION['image_status_exits']) && $_SESSION['image_status_exits'] !='')
-                                {
-                                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Error!</strong> '. $_SESSION['image_status_exits'].'
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div> ';
-                                    unset($_SESSION['image_status_exits']);
-                                }
-                            if(isset($_SESSION['inserted_blog']) && $_SESSION['inserted_blog'] !='')
-                                {
-                                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success!</strong> '. $_SESSION['inserted_blog'].'
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div> ';
-                                    unset($_SESSION['inserted_blog']);
-                                }
-                        ?>
+                        <h2 class="my-3">Create A New Blog</h2>                       
                         
                         <form action="rest_api/insert-data.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group mb-3">

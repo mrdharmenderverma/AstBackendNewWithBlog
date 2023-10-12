@@ -18,6 +18,7 @@
 
 <!-- PHP INSERT SCRIPT END -->
 <!DOCTYPE html>
+<?php session_start();?>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/">
 <!-- Head -->
 <?php $page = 'blog details'; $active = 'blog'; require 'Components/head.php';?>
@@ -84,62 +85,9 @@
                             </tbody>
                         </table>    
                     </div>
-                    <!---/end table-->
+                    <!---/end table-->                                
                     
 
-                    <!-- Blog Edit Modal -->                     
-                    <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Update Blog</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                        <div class="form-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Post Title"
-                                                name="post_title" value="<?php echo $eid;?>">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Post Tag"
-                                                name="post_title" value="<?php echo $data->title;?>">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Post Tag"
-                                                name="post_tags" value="<?php echo $data->blog_tag;?>">
-                                        </div>
-                                        <div class="mb-3">
-                                            <input class="form-control" type="file" id="formFileMultiple" multiple=""
-                                                name="post_image">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="updateCkEditor">Description</label>
-                                            <input class="form-control" id="updateCkEditor" rows="3"
-                                                name="post_description"
-                                                value="<?php echo $data->blog_description;?>">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Update Blog</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- ck editor -->
-                    <script src="ckeditor/ckeditor.js"></script>
-                    <script>
-                    CKEDITOR.replace('ckEditor');
-                    CKEDITOR.replace('updateCkEditor');
-                    </script>
                     <!-- Footer -->
                     <?php require 'Components/footer.php';?>
                     <!-- /Footer -->

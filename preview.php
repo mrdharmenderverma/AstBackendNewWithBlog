@@ -27,6 +27,7 @@
 <!-- /Head -->
 
 <body>
+    <?php session_start();?>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -71,7 +72,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <img src="upload_images/<?php echo $num['image'];?>" width="400px" height="200px" class="mb-3">  <!--to Call Current image-->
-                                                    <input class="form-control" type="file" id="" name="image">
+                                                    <input class="form-control" type="file" id="" name="image" accept="image/*">
                                                     <input type="hidden" class="custom-file-input" name="old_image" value="<?php echo $num['image'];?>">    
                                                 </div>
                                                 <div class="form-group mb-3">

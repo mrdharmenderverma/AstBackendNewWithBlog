@@ -12,7 +12,7 @@
 
         $file_type = $_FILES['post_image']['type'];
 
-        $allowed_file_types = array('image/jpeg', 'image/png');
+        $allowed_file_types = array('image/jpeg', 'image/png', 'image/jpg');
         
         if (!in_array($file_type, $allowed_file_types)) 
         {

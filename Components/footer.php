@@ -39,8 +39,7 @@
     <?php         
       if(isset($_SESSION['status']) && $_SESSION['status'] !='')
           {
-            ?>
-              
+            ?>              
               <script>
                 swal({
                   title: "<?php echo $_SESSION['status']?>",
